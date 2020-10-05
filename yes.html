@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alarm clock</title>
+    <style>
+        
+        #canva{
+             margin-left:600px;
+        }
+        #digital{
+            display:block;
+            font-weight:bold;
+            text-align:center;
+            width:210px;
+            padding: 50px;
+            margin:auto;
+        }
+        body{
+            background-image:url('https://ii1.pepperfry.com/media/catalog/product/b/l/1100x1210/blue--metallic-happy-hearts-wallpaper-nilaya-wall-coverings-by-asian-paints-blue--metallic-happy-hea-uzoapb.jpg');
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+<body>
+    <div id="digital"></div>
+    <div id="can">
+    <canvas id="canva" width="300" height="300" ></canvas>
+    </div>
+    <form id="container">
+        <h1>SetAlarm</h1>
+        <input type="text" class="alarm" id="alarm" placeholder="YYYY-MM-DD hh:mm:ss">
+        <button id="btn" class="btn" type="submit">SET ALARM</button>
+    </form>
+    
+    <script src="alarmm.js">      
+    </script>
+</body>
+</html>
