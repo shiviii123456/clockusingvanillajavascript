@@ -1,86 +1,139 @@
-//To make a digital clock 
 
-var x=setInterval(display,1000);
-function display(){
-    var time=new Date();
-    var hours=time.getHours();   //return hours in the form of numbers
-    var min=time.getMinutes();   //return minutes in the form of numbers
-    var sec=time.getSeconds();
-    
-  document.getElementById("digital").innerHTML=(change(hours)+":"+addzeroes(min)+":"+addzeroes(sec)+""+gettimeperiod(hours)); //string is used to typecast
+const input=document.querySelector(".todoinput");
+const button=document.querySelector(".todobutton");
+const list=document.querySelector(".todolist");
+const date=document.querySelector("#date");
+const clear=document.querySelector(".todoinput1");
+
+// const format={weekday:"long",month:"short",day:"numberic"};
+// let todaydate=new Date();
+// date.innerHTML=todaydate.toLocaleDateString("en-us",format);
+var  months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var d = new Date();
+var monthName=months[d.getMonth()];
+var weekday=["Sun","Mon","Tues","Wed","Thurs","Fri","Sat"];
+var week=weekday[d.getDay()];
+var dat=d.getDate();
+date.innerHTML=week+","+dat+monthName;
+
+console.log(monthName);
+//event listener
+document.addEventListener('DOMContentLoaded',gettodos);
+button.addEventListener('click',addtodos);
+list.addEventListener('click',deleted);
+clear.addEventListener('click',clears);
+
+function clears(){
+    localStorage.clear();
+    location.reload();
 }
-function addzeroes(num){
-    if(num<10){
-        return "0"+String(num);
+
+function addtodos(e){
+ e.preventDefault();
+console.log("hello");
+
+const tododiv=document.createElement('div');
+tododiv.classList.add("todo");
+const todoli=document.createElement('li');
+todoli.innerText=input.value;
+todoli.classList.add("todo-item");
+tododiv.appendChild(todoli);
+savelocaltodos(input.value);
+//adding buttons
+const checked=document.createElement("button");
+checked.innerHTML='<i class="fas fa-check"></i>';
+checked.classList.add("completed-btn");
+tododiv.appendChild(checked);
+//check delete
+const deleted=document.createElement("button");
+deleted.innerHTML='<i class="fas fa-trash"></i>';
+deleted.classList.add("trash-btn");
+tododiv.appendChild(deleted);
+
+list.appendChild(tododiv);
+  //clear the todo
+  input.value="";
+
+}
+function deleted(e){
+      console.log(e.target);
+      const item=e.target;
+      if(item.classList[0]==="trash-btn"){
+          const todo=item.parentElement;
+          removelocaltodos(todo);
+          todo.remove();
+      }
+      //checkmark
+      if(item.classList[0]==="completed-btn"){
+          const todo=item.parentElement;
+         todo.classList.toggle("completed");
+      }
+
+      
+}
+
+function savelocaltodos(todo){
+    let todos;
+    if(localStorage.getItem('todos')===null){
+        todos=[];
     }
     else{
-        return String(num);
+        todos=JSON.parse(localStorage.getItem('todos'));
     }
+    todos.push(todo);
+    localStorage.setItem("todos",JSON.stringify(todos));
 }
-function change(hours){
-    var hour=hours%12;
-    if(hour==0){
-        hour=12;
+
+function gettodos(){
+    let todos;
+    if(localStorage.getItem('todos')===null){
+        todos=[];
     }
-    return String(hour);
-}
-function gettimeperiod(hours){
-    if(hours<12)
-    return "AM";
-    else
-    return "PM";
-}
-//To make analog clock
-var canvas=document.getElementById("canva");
-var ctx=canvas.getContext('2d');
+    else{
+        todos=JSON.parse(localStorage.getItem('todos'));
+    }
+    todos.forEach(function(todo) {
+        const tododiv=document.createElement('div');
+tododiv.classList.add("todo");
+const todoli=document.createElement('li');
+todoli.innerText=todo;
+todoli.classList.add("todo-item");
+tododiv.appendChild(todoli);
 
-var radius=100;
-var x=canvas.width/2;
-var y=canvas.height/2;
-    ctx.lineWidth=10;
-    //drawing circle
-    ctx.beginPath();
-    ctx.arc(x, y, radius, 0, 2 * Math.PI);
-    ctx.fillStyle = 'white';
-    ctx.fill();
+const checked=document.createElement("button");
+checked.innerHTML='<i class="fas fa-check"></i>';
+checked.classList.add("completed-btn");
+tododiv.appendChild(checked);
+//check delete
+const deleted=document.createElement("button");
+deleted.innerHTML='<i class="fas fa-trash"></i>';
+deleted.classList.add("trash-btn");
+tododiv.appendChild(deleted);
 
-    ctx.strokesStyle="black";
-    ctx.beginPath();
-    ctx.moveTo(x,y);
-    ctx.lineTo(x+radius,y);
-    ctx.stroke();
+list.appendChild(tododiv);
    
-    ctx.lineWidth=5;
-    ctx.strokesStyle="red";
-    ctx.beginPath();
-    ctx.moveTo(x,y);
-    ctx.lineTo(x,y-radius);
-    ctx.stroke();
-    
-    function drawTime(ctx, radius){
-        var now = new Date();
-        var hour = now.getHours();
-        var minute = now.getMinutes();
-        var second = now.getSeconds();
-        //hour
-        hour = hour%12;
-        hour = (hour*Math.PI/6)+(minute*Math.PI/(6*60))+(second*Math.PI/(360*60));
-        drawHand(ctx, hour, radius*0.5, radius*0.07);
-        //minute
-        minute = (minute*Math.PI/30)+(second*Math.PI/(30*60));
-        drawHand(ctx, minute, radius*0.8, radius*0.07);
-        // second
-        second = (second*Math.PI/30);
-        drawHand(ctx, second, radius*0.9, radius*0.02);
-        // second
-        second = (second*Math.PI/30);
-        drawHand(ctx, second, radius*0.9, radius*0.02);
-      }
-       drawHand(ctx,)
+    });  
 
+}
+function removelocaltodos(todo){
+    let todos;
+    if(localStorage.getItem('todos')===null){
+        todos=[];
+    }
+    else{
+        todos=JSON.parse(localStorage.getItem('todos'));
 
+    }
+    console.log(todo.children);
+    const todoindex=todo.children[0].innerText;
+    todos.splice(todos.indexOf(todoindex),1);
+    localStorage.setItem("todos",JSON.stringify(todos));
+}
 
-
-
-
-
+let searchbox=document.getElementById("search");
+searchbox.addEventListener('click',searchbar);
+function searchbar(e){
+    e.preventDefault();
+    let trlist=document.querySelector("#todolist");
+    console.log(trlist);
+}

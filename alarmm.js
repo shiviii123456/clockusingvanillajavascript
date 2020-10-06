@@ -142,7 +142,7 @@ function setalarm(e){
     console.log(`set the alarm ${alarmdate}`);
     nowtime= new Date();
       console.log(nowtime);
-    let alarmtime=nowtime-alarmdate;
+    let alarmtime=alarmdate-nowtime;
     console.log(alarmtime);
     if(alarmtime>=0){
         setTimeout(()=>{
@@ -150,4 +150,9 @@ function setalarm(e){
             console.log("ringing");
         },alarmtime);
     }
+    else{
+        alert("set correct alarm");
+    }
+    alarm.value="";
+
 }

@@ -17,22 +17,17 @@
             padding: 50px;
             margin:auto;
         }
-        body{
-            background-image:url('https://ii1.pepperfry.com/media/catalog/product/b/l/1100x1210/blue--metallic-happy-hearts-wallpaper-nilaya-wall-coverings-by-asian-paints-blue--metallic-happy-hea-uzoapb.jpg');
-            background-position: center;
-            background-repeat: no-repeat;
-        }
     </style>
 </head>
-<body>
-    <div id="digital"></div>
+<body style="background-image:linear-gradient(white,grey);">
+    <div id="digital" style="font-size:35px; font-family: monospace; font-weight:normal;"></div>
     <div id="can">
     <canvas id="canva" width="300" height="300" ></canvas>
     </div>
-    <form id="container">
-        <h1>SetAlarm</h1>
-        <input type="text" class="alarm" id="alarm" placeholder="YYYY-MM-DD hh:mm:ss">
-        <button id="btn" class="btn" type="submit">SET ALARM</button>
+    <form id="container" style="text-align:center; margin-bottom:50px;">
+        <h1 >SetAlarm</h1>
+        <input type="text" class="alarm" id="alarm" placeholder="YYYY-MM-DD hh:mm:ss" style="padding:10px 20px; border-radius:5px; font-size:20px;">
+        <button id="btn" class="btn" type="submit"  style="padding:10px 20px; border-radius:5px; font-size:20px;" >SET ALARM</button>
     </form>
     
     <script src="alarmm.js">      
