@@ -17,9 +17,13 @@
             padding: 50px;
             margin:auto;
         }
+        body{
+            min-height: 100vh;
+        }
     </style>
 </head>
-<body style="background-image:linear-gradient(white,grey);">
+<body style="background-image:linear-gradient(120deg,white,black);">
+    <div id="contain">
     <div id="digital" style="font-size:35px; font-family: monospace; font-weight:normal;"></div>
     <div id="can">
     <canvas id="canva" width="300" height="300" ></canvas>
@@ -29,6 +33,7 @@
         <input type="text" class="alarm" id="alarm" placeholder="YYYY-MM-DD hh:mm:ss" style="padding:10px 20px; border-radius:5px; font-size:20px;">
         <button id="btn" class="btn" type="submit"  style="padding:10px 20px; border-radius:5px; font-size:20px;" >SET ALARM</button>
     </form>
+    </div>
     
     <script src="alarmm.js">      
     </script>

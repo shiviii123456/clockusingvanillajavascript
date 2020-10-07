@@ -10,10 +10,10 @@ const clear=document.querySelector(".todoinput1");
 // date.innerHTML=todaydate.toLocaleDateString("en-us",format);
 var  months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 var d = new Date();
-var monthName=months[d.getMonth()];
+var monthName=months[d.getMonth()]; 
 var weekday=["Sun","Mon","Tues","Wed","Thurs","Fri","Sat"];
 var week=weekday[d.getDay()];
-var dat=d.getDate();
+var dat=d.getDate(); 
 date.innerHTML=week+","+dat+monthName;
 
 console.log(monthName);
@@ -67,9 +67,7 @@ function deleted(e){
       if(item.classList[0]==="completed-btn"){
           const todo=item.parentElement;
          todo.classList.toggle("completed");
-      }
-
-      
+      }     
 }
 
 function savelocaltodos(todo){
