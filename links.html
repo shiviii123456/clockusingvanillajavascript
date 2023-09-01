@@ -7,10 +7,44 @@
     integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
     crossorigin="anonymous" />
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Document</title>
     <style>
-    
+   .top-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background:  lavender;
+}
+.content {
+	position: relative;
+}
+.content h2{
+	position: absolute;
+	color: black;
+	transform: translate(-50%,-50%);
+	font-size: 5em;
+}
+.content h2:nth-child(1){
+	color: transparent;
+	-webkit-text-stroke :2px white;
+}
+.content h2:nth-child(2){
+	color: black;
+	animation: animate 4s ease-in-out infinite;
+}
+@keyframes animate 
+{
+	0%,100%
+	{
+		clip-path: polygon(1% 47%, 20% 43%, 34% 47%, 44% 54%, 56% 58%, 74% 55%, 87% 52%, 100% 45%, 100% 100%, 0 100%);
+	}
+	50%
+	{
+		clip-path: polygon(0 48%, 10% 56%, 25% 59%, 44% 56%, 59% 49%, 72% 42%, 89% 39%, 100% 45%, 100% 100%, 0 100%);}
+
+}
         .container{
             width: 400px;
             background-color: rgb(0,0,0,0.6);
@@ -37,11 +71,22 @@
            }
     </style>
 </head>
+<div class="top-container">
+    <div class="content">
+        <h2>OSS</h2>
+        <h2>OSS</h2>
+    </div>
+    </div>
 <body style="background-color: rgb(129, 153, 206);">
     <div class="container"><h1>Links for alarm clock and todo-list</h1></div>
     <div class="link">
         <a href="todo.html">Todo-list<i class="fa fa-sticky-note-o"></i></a>
         <a href="yes.html">AlarmClock</a>
-    </div>
+    </div> 
+     <script>
+     $(window).on("load",function(){
+  $(".top-container").fadeOut("slow")
+});
+     </script> 
 </body>
 </html>

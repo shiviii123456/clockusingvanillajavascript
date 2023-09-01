@@ -32,7 +32,6 @@ function gettimeperiod(hours){
 }
 
 
-
 var canvas=document.getElementById("canva");
 ctx=canvas.getContext("2d");
 var x=canvas.width/2;
